@@ -1,0 +1,84 @@
+{
+  "home": {
+    "route":"/home",
+    "component": "Home",
+    "enabled": true,
+    "navable": true,
+    "permissions": null,
+    "logging":true
+  },
+  "typeQuizzing": {
+    "route":"/typeQuizzing",
+    "component": "TypeQuizzing",
+    "enabled": true,
+    "navable": true,
+    "permissions": {
+      "loggedIn": true
+    },
+    "logging":true,
+    "dataname":"testnewtypequizzingscores"
+  },
+  "flashCards": {
+    "route":"/flashCards",
+    "component": "FlashCards",
+    "enabled": true,
+    "navable": true,
+    "permissions": {
+      "loggedIn": true
+    },
+    "logging":true,
+    "dataname":"testFlashCardScores"
+  },
+  "memoryVerses": {
+    "route":"/memoryVerses",
+    "component": "MemoryVerses",
+    "enabled": true,
+    "navable": true,
+    "permissions": {
+      "loggedIn": true
+    },
+    "logging":true
+  },
+  "login": {
+    "route":"/login",
+    "component": "Login",
+    "enabled": true,
+    "navable": false,
+    "permissions": null,
+    "logging":true
+  },
+  "wrongPermissionsPage": {
+    "route":"/wrongPermissionsPage",
+    "component": "WrongPermissionsPage",
+    "enabled": true,
+    "navable": false,
+    "permissions": null,
+    "logging":true
+  },
+  "profile": {
+    "route":"/Profile/:uid",
+    "component": "Profile",
+    "enabled": true,
+    "navable": false,
+    "permissions": {
+      "loggedIn": true
+    },
+    "logging":true
+  },
+  "emptyPage": {
+    "route":"*",
+    "component": "EmptyPage",
+    "enabled": true,
+    "navable": false,
+    "permissions": null,
+    "logging":true
+  },
+  "Copyright": {
+    "route":"/Copyright",
+    "component": "Copyright",
+    "enabled": true,
+    "navable": true,
+    "permissions": null,
+    "logging":true
+  }
+}

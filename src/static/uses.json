@@ -1,0 +1,37 @@
+[
+  {
+    "start":1,
+    "end":1,
+    "color":"red"
+  },
+  {
+    "start":2,
+    "end":2,
+    "color":"orange"
+  },
+  {
+    "start":3,
+    "end":3,
+    "color":"#FFD300"
+  },
+  {
+    "start":4,
+    "end":4,
+    "color":"green"
+  },
+  {
+    "start":5,
+    "end":10,
+    "color":"blue"
+  },
+  {
+    "start":10,
+    "end":20,
+    "color":"purple"
+  },
+  {
+    "start":20,
+    "end":3000000,
+    "color":"black"
+  }
+]

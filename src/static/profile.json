@@ -1,0 +1,45 @@
+{
+  "email": "",
+  "userName": "",
+  "role": "user",
+  "ratings": {
+    "openOnline": {
+      "rt": 1000,
+      "rd": 350,
+      "rv": 0.6
+    },
+    "teamsOnline": {
+      "rt": 1000,
+      "rd": 350,
+      "rv": 0.6
+    }
+  },
+  "gamesPlayed": 0,
+  "tournaments": [],
+  "friends": [],
+  "monthScore": 0,
+  "allTimeScore": 0,
+  "state": "",
+  "banned": false,
+  "challenge": {
+    "active": false,
+    "opponent": "",
+    "time": 0
+  },
+  "settings": {
+    "useColorLvL": 4,
+    "useColor": true,
+    "highlightMemory": true,
+    "chapterPresets": [],
+    "useTooltips": true,
+    "useFooter":true,
+    "useHeaders":true,
+    "useColors": [],
+    "season": "romansjames",
+    "nameColor": "black",
+    "profileImgURL": "",
+    "state": "",
+    "useDefaultImg": true,
+    "useCustomImg": false
+  }
+}

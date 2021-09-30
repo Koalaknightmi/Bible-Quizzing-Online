@@ -1,0 +1,40 @@
+{
+  "name": "Nazarene Bible Quizzing Online",
+  "short_name": "NBQO",
+  "icons": [
+    {
+      "src": "images/NBQO logo.jpg",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "images/NBQO logo.jpg",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "images/NBQO logo.jpg",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "images/NBQO logo.jpg",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "images/NBQO logo.jpg",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "images/NBQO logo.jpg",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#941b1b",
+  "theme_color": "#941b1b"
+}

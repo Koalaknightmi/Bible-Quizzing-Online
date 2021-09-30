@@ -1,0 +1,47 @@
+{
+  "socket": {
+    "connected": false,
+    "loggedIn": false,
+    "challenge": false,
+    "auth": null
+  },
+  "typeQuizzing": {
+    "chapters": [],
+    "prompt": false,
+    "type": 0,
+    "firstLetter": true,
+    "range": false,
+    "justMemory": false,
+    "compete": false,
+    "competePreset": ""
+  },
+  "flashCards": {
+    "chapters": [],
+    "prompt": false,
+    "byYourself": true,
+    "range": false,
+    "justMemory": false,
+    "referenceToVerse": true,
+    "random": true,
+    "time": 5,
+    "type": 1
+  },
+  "rangeVal": {
+    "startingChapter": {
+      "val": "",
+      "hasBeenChanged": false
+    },
+    "startingVerse": {
+      "val": 1,
+      "hasBeenChanged": false
+    },
+    "endingChapter": {
+      "val": "",
+      "hasBeenChanged": false
+    },
+    "endingVerse": {
+      "val": 3,
+      "hasBeenChanged": false
+    }
+  }
+}
