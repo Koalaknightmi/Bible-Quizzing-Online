@@ -33,7 +33,6 @@ const VerseDisplay = ({v,refer,unique,multiple,footnotes,headers,blanks,prompt})
       //let f = footnotes ? displayFooters(u) : removeFooters(u)
       setVerse(v)
     }
-    
   },[])
 
   return (

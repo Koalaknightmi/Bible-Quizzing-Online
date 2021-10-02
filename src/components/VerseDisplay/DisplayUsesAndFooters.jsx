@@ -5,26 +5,67 @@ import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import { useSelector } from 'react-redux'
 import blanks from "../../static/blanks"
+import { css } from '@emotion/react';
 
 const checkRemove = (uses,blanksobj) => {
-  if(uses>=blanks[blanksobj.lvl].start&&uses<=blanks[blanksobj.lvl].end){
+  if(!blanksobj) return false
+  if(uses>=blanks[blanksobj.lvl-1].start&&uses<=blanks[blanksobj.lvl-1].end){
     return true
   }
   return false
 }
 
-const Into = React.memo(({uses,p1,p2,word,col}) => (
-  <>
-    <Tooltip placement="top" interactive style={{color:col}} title={
+const WordInTooltip = React.forwardRef(function MyComponent(props, ref) {
+  if(props.prompt2 === "true"){
+     return(<>
+     {props.p1}
+     <span 
+      {...props}
+      ref={ref}
+      style={
+          {
+            "fontWeight":"bold",
+            "color":props.col,
+            "textDecoration":"underline"
+          }
+        }>
+      {!checkRemove(props.uses,props.overrides.blanks) ? props.word : props.word.replace(/\w/g,"_")}
+    </span>
+    </>)
+  }
+  return(<>
+     {props.p1}
+     <span 
+      {...props}
+      ref={ref}
+      style={
+          {
+            "color":props.col
+          }
+        }>
+      {!checkRemove(props.uses,props.overrides.blanks) ? props.word : props.word.replace(/\w/g,"_")}
+    </span>
+    </>)
+});
+
+const Into = (props) => {
+  return (
+  <span>
+    <Tooltip placement="top" title={
         <>
-          <Typography color="inherit">Uses: {uses}</Typography>
+          <Typography color="inherit">Uses: {props.uses}</Typography>
         </>
       }>
-      <span>{p1}{word}</span>
-    </Tooltip>
-    {p2}
-  </>
-))
+      <WordInTooltip {...props}/>
+      </Tooltip>
+    {props.p2}
+  </span>)
+}
+
+const FootNumber = React.forwardRef(function MyComponent(props, ref) {
+  //  Spread the props to the underlying DOM element.
+  return <span style={{"color":"blue"}} {...props} ref={ref}>{" ["+props.text+"] "}</span>
+});
 
 const DisplayUsesAndFooters = React.memo(({verse,refer,overrides}) => {
   const settings = useSelector(state => state.firebase.profile.settings)
@@ -36,18 +77,22 @@ const DisplayUsesAndFooters = React.memo(({verse,refer,overrides}) => {
       let intoWords2 = verse.match(/(?<!\w[’'-])\b(?![’'-]\w)(\w+)(?<!\w[’'-])\b(?![’'-]\w)/g)
       let punctuation = verse.split(/(?:\w|['’-]\w)+/g)
       for(var i in intoWords2){
+        i = parseInt(i)
         if(!intoWords2[i].match(/[0-9]/g)){
           if(settings.useColor&&!overrides.color){
             let wC = getUseClass(intoWords2[i])
+            let prompt2 = overrides.prompt ? (i < overrides.prompt.length) : false
             if(wC){
-              if(i==="0"){
+              if(i===0){
                 intoWords2[i] = (<>
                   <Into 
                     uses={getUses(intoWords2[i])} 
                     p1={punctuation[0]}
-                    p2={punctuation[parseInt(i)+1].replace(/\[/g," ")}
+                    p2={punctuation[i+1].replace(/\[/g," ")}
                     word={intoWords2[i]}
                     col={wC.color}
+                    prompt2={prompt2.toString()}
+                    overrides = {overrides}
                   />
                 </>)
               } else {
@@ -55,28 +100,33 @@ const DisplayUsesAndFooters = React.memo(({verse,refer,overrides}) => {
                   <Into 
                     uses={getUses(intoWords2[i])} 
                     p1={""}
-                    p2={punctuation[parseInt(i)+1].replace(/\[/g," ")}
+                    p2={punctuation[i+1].replace(/\[/g," ")}
                     word={intoWords2[i]}
                     col={wC.color}
+                    prompt2={prompt2.toString()}
+                    overrides = {overrides}
                   />
                 </>)
               }
             }
           } else {
             if(i==="0"){
-              intoWords2[i] = punctuation[0] + intoWords2[i] + punctuation[parseInt(i)+1].replace(/\[/g," ")
+              intoWords2[i] = punctuation[0] + intoWords2[i] + punctuation[i+1].replace(/\[/g," ")
             } else {
-              intoWords2[i] = intoWords2[i] + punctuation[parseInt(i)+1].replace(/\[/g," ")
+              intoWords2[i] = intoWords2[i] + punctuation[i+1].replace(/\[/g," ")
             }
           }
         } else {
-          punctuation[parseInt(i)+1] = punctuation[parseInt(i)+1].replace(/\]/g," ")
+          punctuation[i+1] = punctuation[i+1].replace(/\]/g," ")
           if(settings.useTooltips&&settings.useFooter&&!overrides.footnotes){
-            intoWords2[i] = (<Tooltip placement="top" interactive style={{color:"blue"}} title={
+            intoWords2[i] = (<Tooltip placement="top"
+             title={
               <>
                 <Typography color="inherit">Footnote: {getFooter(refer,intoWords2[i])}</Typography>
               </>
-            }><span>{" ["+intoWords2[i]+"] "}</span></Tooltip>)
+            }>
+              <FootNumber text = {intoWords2[i]}/>
+            </Tooltip>)
           } else {
             intoWords2[i] = ""
           }
@@ -86,15 +136,15 @@ const DisplayUsesAndFooters = React.memo(({verse,refer,overrides}) => {
       setRendered(true)
     }
   },[intoWords,rendered,verse])
-  
+  //{!rendered && verse}
   return (<>
-    {!rendered && verse}
-    {intoWords && intoWords.map((w,i)=>(
+    {intoWords && intoWords.map((w,i)=>{
+      return (
       <span key={i}>
         {w}
       </span>
-    ))}
-  </>)
+    )})}
+  </>) 
 })
 
 export default DisplayUsesAndFooters

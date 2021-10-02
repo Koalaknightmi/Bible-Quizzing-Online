@@ -20,20 +20,16 @@ const VersesPage = () => {
 
   useEffect(()=>{
     if(!season.loading&&!loaded){
-      console.log("hi there")
       //console.log(JSON.stringify(getPrompts())) only works with old memory verse data
       setVerses(getMemoryVerses())
       setLoaded(true)
-      console.log(verses)
+      console.log(verses+"verses")
     }
   },[season])
 
   return (
     <div>
-      <div><b>Singles</b></div>
-      {!season.loading && verses.singles && verses.singles.map((k)=>(<VerseDisplay key={k.ref} refer={k.ref} headers={false} unique={true} footnotes={false} multiple={false} v={k.verse}/>))}
-      <div><b>Multiples</b></div>
-      {!season.loading && verses.multiples && verses.multiples.map((k)=>(<VerseDisplay key={k.ref} refer={k.ref} headers={false} unique={true} footnotes={false} multiple={true} v={k.verse}/>))}
+      {!season.loading && verses && verses.map((k)=>(<VerseDisplay key={k.ref} refer={k.ref} headers={false} prompt={k.prompt.split(" ")} unique={true} footnotes={false} multiple={k.ref.indexOf("-")>=0} v={k.verse}/>))}
     </div>
   )
 }

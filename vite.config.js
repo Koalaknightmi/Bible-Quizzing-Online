@@ -8,6 +8,7 @@ export default defineConfig({
     jsxInject: `import * as React from "react";`
   },
   server:{
+    host:{port:3000},
     hmr: {
       port: 443,
     }

@@ -1,34 +1,22 @@
 [
   {
     "start":1,
-    "end":4
+    "end":5
   },
   {
     "start":1,
-    "end":6
+    "end":8
   },
   {
     "start":1,
-    "end":10
+    "end":15
   },
   {
     "start":1,
-    "end":20
+    "end":30
   },
   {
     "start":1,
     "end":50
-  },
-  {
-    "start":1,
-    "end":100
-  },
-  {
-    "start":1,
-    "end":200
-  },
-  {
-    "start":1,
-    "end":300
   }
 ]

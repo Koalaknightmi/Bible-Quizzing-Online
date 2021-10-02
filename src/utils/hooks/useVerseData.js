@@ -47,10 +47,10 @@ const useVerseData = () => {
   }
 
   const getMemoryVerses = () => {
-    let a = {singles:[],multiples:[]};
+    let a = [];
     let m2 = "", r1, r2, r3, r4;
     for(var i in m.singles){
-      a.singles.push({ref:m.singles[i].ref,verse:getVerseByRef(m.singles[i].ref),prompt:m.singles[i].prompt})
+      a.push({ref:m.singles[i].ref,verse:getVerseByRef(m.singles[i].ref),prompt:m.singles[i].prompt})
     }
     for(var i in m.multiples){
       m2 = ""
@@ -61,14 +61,14 @@ const useVerseData = () => {
       for(var j = r4; j <= r2; j++){
         m2 += getVerseByRef(r3[0]+":"+j)
       }
-      a.multiples.push({verse:m2,ref:m.multiples[i].ref,prompt:m.multiples[i].prompt})
+      a.push({verse:m2,ref:m.multiples[i].ref,prompt:m.multiples[i].prompt})
     }
     return a
   }
 
   const checkIfMem = (ref) => {
     ref = convertToAbr(ref)
-    let singFilter = m.singles.filter((vData) => vData.ref = ref)
+    let singFilter = m.singles.filter((vData) => vData.ref === ref)
     if(singFilter.length === 1){
       return true
     } else {
